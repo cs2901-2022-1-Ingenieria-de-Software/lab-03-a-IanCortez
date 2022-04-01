@@ -1,6 +1,5 @@
 package lab;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
