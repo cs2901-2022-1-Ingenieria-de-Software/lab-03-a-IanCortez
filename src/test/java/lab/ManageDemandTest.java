@@ -1,5 +1,6 @@
 package lab;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -35,14 +36,35 @@ public class ManageDemandTest {
         Assert.assertEquals(Math.round(result), 0);
     }
 
-    public void test_AllOrdersFromColombian(){
+    public void test_AllOrdersFromColombian() throws IOException{
         List<Order> ordersFromColombia = TestUtil.buildOrdersColombia();
         double result = demand.calculateTotal(ordersFromColombia);
-        Assert.assertEquals(Math.round(result), 7.0);
+        Assert.assertEquals(Math.round(result), 0);
     }
 
-    public void test_HeavyOrders() throws IOException {
-
+    public void test_AllOrdersFromBrazil() throws IOException {
+        List<Order> ordersFromBrazil = TestUtil.buildOrdersBrazil();
+        double result = demand.calculateTotal(ordersFromBrazil);
+        Assert.assertEquals(Math.round(result), 5.0);
     }
+
+    public void test_RandomOrders() throws IOException {
+        List<Order> orders = TestUtil.buildDifferentOrders();
+        double result = demand.calculateTotal(orders);
+        Assert.assertEquals(Math.round(result), 27);
+    }
+
+    public void test_RandomOrdersByAdditional() throws IOException {
+        List<Order> orders = TestUtil.buildDifferentOrders();
+        double result = demand.calculateTotalByAdditional(orders, 0.1, 0.5, 0.8);
+        Assert.assertEquals(Math.round(result), 122); // real 121.5
+    }
+
+    public void test_WrongCountryNames() throws IOException {
+        List<Order> orders = TestUtil.buildWrongCountryOrders();
+        double result = demand.calculateTotal(orders);
+        Assert.assertEquals(Math.round(result), 0);
+    }
+
 
 }
