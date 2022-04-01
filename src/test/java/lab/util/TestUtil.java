@@ -3,7 +3,6 @@ package lab.util;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import lab.demand.Order;
 
 public class TestUtil {
@@ -45,6 +44,14 @@ public class TestUtil {
         orders.add(new Order("US", 14L));
         orders.add(new Order("UK", 9L));
         orders.add(new Order("UK", 9L));
+        return orders;
+    }
+
+    public static List<Order> buildWrongQuantityOrders(){
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("PE", -12L));
+        orders.add(new Order("CO", -1L));
+        orders.add(new Order("BR", 8L));
         return orders;
     }
 

@@ -1,6 +1,5 @@
 package lab;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -64,6 +63,12 @@ public class ManageDemandTest {
         List<Order> orders = TestUtil.buildWrongCountryOrders();
         double result = demand.calculateTotal(orders);
         Assert.assertEquals(Math.round(result), 0);
+    }
+
+    public void test_InvalidQuantity() throws IOException {
+        List<Order> orders = TestUtil.buildWrongQuantityOrders();
+        double result = demand.calculateTotal(orders);
+        Assert.assertEquals(Math.round(result), -1);
     }
 
 

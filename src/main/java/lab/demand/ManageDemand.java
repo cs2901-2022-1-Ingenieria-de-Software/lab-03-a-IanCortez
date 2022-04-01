@@ -26,9 +26,18 @@ public class ManageDemand {
         for (Order order : orders) {
             // Calculate Taxes
             String country = order.getCountry().toUpperCase();
+            if(country.length() != 2){
+                System.out.println("error: invalid country code");
+                return -1;
+            }
+
             taxes += getTaxByCountry(country, PERUVIAN_TAX, COLOMBIAN_TAX, BRAZILIAN_TAX);
 
             // Calculate Total
+            if(order.getQuantity() < 0){
+                System.out.println("error: invalid quantity");
+                return -1;
+            }
             quantities += order.getQuantity();
         }
 
