@@ -52,9 +52,17 @@ public class ManageDemand {
         for (Order order : orders) {
             // Calculate additional by country
             String currCountry = order.getCountry().toUpperCase();
+            if(currCountry.length() != 2) {
+                System.out.println("error: invalid country code");
+                return -1;
+            }
             taxes += getTaxByCountry(currCountry, additionalPeru, additionalColombia, additionalBrazil);
 
             // Calculate Total
+            if(order.getQuantity() < 0){
+                System.out.println("error: invalid quantity");
+                return -1;
+            }
             quantities += order.getQuantity();
         }
 

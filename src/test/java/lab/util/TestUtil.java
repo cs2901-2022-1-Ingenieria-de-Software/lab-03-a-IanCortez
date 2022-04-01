@@ -55,4 +55,12 @@ public class TestUtil {
         return orders;
     }
 
+    public static List<Order> buildWrongSizeCountryCode(){
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("", 10L));
+        orders.add(new Order("Zimbabwe", 10L));
+        orders.add(new Order("madagascar", 10L));
+        return orders;
+    }
+
 }
